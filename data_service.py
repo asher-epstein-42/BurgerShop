@@ -6,7 +6,7 @@ from mongodb_setup import reviews, orders, users, workers  # importing the colle
 from consts import email_regex
 
 
-# Date service for users:
+# Data service for users:
 
 def register_user(name: str, email: str, password: str, address: str):
     new_user = {
@@ -58,7 +58,7 @@ def change_address(new_address, email):
     users.update_one(old_address, updated_address)
 
 
-# Date service for workers:
+# Data service for workers:
 
 def register_worker(name: str, password: str):
     new_worker = {"name": name,
