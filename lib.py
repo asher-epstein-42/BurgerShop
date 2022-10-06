@@ -78,6 +78,7 @@ def register_user():
         exit_app()
     valid_email = dts.validate_email(email)
     if not valid_email:
+        print("Invalid email! ")
         register_or_login()
     password = str(input("choose a password: "))
     address = str(input("whats your address? "))
