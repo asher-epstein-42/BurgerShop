@@ -4,6 +4,8 @@ import active_user
 
 
 def main():
+    # print_header(consts.header)
+    # register_or_login()
     while True:
         try:
             print_header(consts.header)
@@ -14,22 +16,20 @@ def main():
 
 def register_or_login():
     ans = input("press [L] to login or [R] to register, "
-                "[W] to login as a restaurant worker or [X] to exit").upper().strip()
-    while True:
-        if ans == 'L':
-            login_user()
-        elif ans == 'R':
-            register_user()
-        elif ans == 'W':
-            login_worker()
-            show_options_for_logged_workers()
-        elif ans == 'X':
-            exit_app()
-        else:
-            print("Please enter a valid input", end='\n\n')
-            ans = input(
-                "press [L] to login or [R] to register,"
-                " [W] to login as a restaurant worker or [X] to exit").upper().strip()
+                "[W] to login as a restaurant worker or [X] to exit: ").upper().strip()
+
+    if ans == 'L':
+        login_user()
+    elif ans == 'R':
+        register_user()
+    elif ans == 'W':
+        login_worker()
+        show_options_for_logged_workers()
+    elif ans == 'X' or 'EXIT':
+        exit_app()
+    else:
+        print("Please enter a valid input ", end='\n\n')
+        register_or_login()
 
 
 # Functions for users:
@@ -43,7 +43,6 @@ def show_options_user():
         dts.add_order(active_user.active_email_account, order)
     elif chosen_option == 'R':
         add_review()
-        exit_app()
     elif chosen_option == 'C':
         change_address()
         exit_app()
@@ -95,12 +94,12 @@ def order_a_meal():
     list_toppings = ', '.join(top for top in menu["toppings"])
     list_drinks = ', '.join(drink for drink in menu["drinks"])
     list_sides = ', '.join(side for side in menu["sides"])
-    burger_wheigh = str(input(f"choose the weight of your burger (in grams){list_burgers}: "))
+    burger_weight = str(input(f"choose the weight of your burger (in grams){list_burgers}: "))
     stages_of_doneness = input(f"choose the stages of doneness {list_doneness}: ")
     toppings = input(f"choose one topping {list_toppings}: ")
     drink = input(f"choose a drink {list_drinks}: ")
     side = input(f"choose a side {list_sides}")
-    order = f"a {stages_of_doneness} {burger_wheigh} gram hamburger with {toppings}, " \
+    order = f"a {stages_of_doneness} {burger_weight} gram hamburger with {toppings}, " \
             f"some {side} on the side and a {drink}"
     return order
 
@@ -151,6 +150,7 @@ def delete_order():
     _id = str(input("what is the order id: "))
     dts.delete_order(_id)
     print(f"order with id '{_id}' was deleted successfully!")
+
 
 def register_new_worker():
     name = input("Name: ")
