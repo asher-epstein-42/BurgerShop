@@ -4,8 +4,6 @@ import active_user
 
 
 def main():
-    # print_header(consts.header)
-    # register_or_login()
     while True:
         try:
             print_header(consts.header)
