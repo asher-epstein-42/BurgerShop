@@ -37,7 +37,6 @@ def show_options_user():
     chosen_option = input(consts.options).upper()
     if chosen_option == 'O':
         order = order_a_meal()
-        exit_app()
         dts.add_order(active_user.active_email_account, order)
     elif chosen_option == 'R':
         add_review()
