@@ -42,7 +42,6 @@ def show_options_user():
         add_review()
     elif chosen_option == 'C':
         change_address()
-        exit_app()
     elif chosen_option == 'X':
         exit_app()
     else:
