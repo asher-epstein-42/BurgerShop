@@ -84,18 +84,23 @@ def register_user():
     exit_app()
 
 
-def order_a_meal():
-    menu = consts.original_menu
+def show_menu(menu):
     list_burgers = ', '.join(burger for burger in menu["burgers"])
     list_doneness = ', '.join(stage for stage in menu["stages of doneness"])
     list_toppings = ', '.join(top for top in menu["toppings"])
     list_drinks = ', '.join(drink for drink in menu["drinks"])
     list_sides = ', '.join(side for side in menu["sides"])
-    burger_weight = str(input(f"choose the weight of your burger (in grams){list_burgers}: "))
-    stages_of_doneness = input(f"choose the stages of doneness {list_doneness}: ")
-    toppings = input(f"choose one topping {list_toppings}: ")
-    drink = input(f"choose a drink {list_drinks}: ")
-    side = input(f"choose a side {list_sides}")
+    return {'burgers': list_burgers, 'donness': list_doneness, 'toppings': list_toppings, 'drinks': list_drinks,
+            'sides': list_sides}
+
+
+def order_a_meal():
+    menu = show_menu(consts.original_menu)
+    burger_weight = str(input(f"choose the weight of your burger (in grams){menu.get('burgers')}: "))
+    stages_of_doneness = input(f"choose the stages of doneness {menu.get('donness')}: ")
+    toppings = input(f"choose one topping {menu.get('toppings')}: ")
+    drink = input(f"choose a drink {menu.get('drinks')}: ")
+    side = input(f"choose a side {menu.get('sides')}")
     order = f"a {stages_of_doneness} {burger_weight} gram hamburger with {toppings}, " \
             f"some {side} on the side and a {drink}"
     return order
